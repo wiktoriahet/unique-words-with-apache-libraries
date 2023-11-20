@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
@@ -23,44 +24,52 @@ public class Text {
 
     public void uniqueWordsCounter(String inputFile, String outputFile) {
         LOGGER.info("uniqueWordsCounter(" + inputFile + ", " + outputFile + ")");
-        try {
-            List<String> input = FileUtils.readLines(new File(inputFile), StandardCharsets.UTF_8);
-            String text = StringUtils.join(input, " ");
-            String[] words = StringUtils.split(text);
-            Set<String> uniqueWords = new HashSet<>();
+        if (inputFile != null && outputFile != null) {
+            try {
+                List<String> input = FileUtils.readLines(new File(inputFile), StandardCharsets.UTF_8);
+                String text = StringUtils.join(input, " ");
+                String[] words = StringUtils.split(text);
+                Set<String> uniqueWords = new HashSet<>();
 
-            for (String word : words) {
-                uniqueWords.add(word.toLowerCase());
+                for (String word : words) {
+                    uniqueWords.add(word.toLowerCase());
+                }
+
+                int uniqueWordsCount = uniqueWords.size();
+
+                FileUtils.writeStringToFile(new File(outputFile), "Number of unique words in the text: " + uniqueWordsCount, StandardCharsets.UTF_8);
+
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage());
             }
-
-            int uniqueWordsCount = uniqueWords.size();
-
-            FileUtils.writeStringToFile(new File(outputFile), "Number of unique words in the text: " + uniqueWordsCount, StandardCharsets.UTF_8);
-
-        } catch (IOException e) {
-            LOGGER.warn(e.getMessage());
+            LOGGER.info("uniqueWordsCounter(...)");
+        } else {
+            LOGGER.warn("One of the Strings is null");
         }
-        LOGGER.info("uniqueWordsCounter(...)");
     }
 
     public void uniqueWordsPrinter(String inputFile, String outputFile) {
         LOGGER.info("uniqueWordsPrinter(" + inputFile + ", " + outputFile + ")");
-        try {
-            List<String> input = FileUtils.readLines(new File(inputFile), StandardCharsets.UTF_8);
-            String text = StringUtils.join(input, " ");
-            String[] words = StringUtils.split(text);
-            Set<String> uniqueWords = new HashSet<>();
+        if (inputFile != null && outputFile != null) {
+            try {
+                List<String> input = FileUtils.readLines(new File(inputFile), StandardCharsets.UTF_8);
+                String text = StringUtils.join(input, " ");
+                String[] words = StringUtils.split(text);
+                Set<String> uniqueWords = new HashSet<>();
 
-            for (String word : words) {
-                uniqueWords.add(word.toLowerCase());
+                for (String word : words) {
+                    uniqueWords.add(word.toLowerCase());
+                }
+
+                FileUtils.writeStringToFile(new File(outputFile), "Unique words in the text: " + uniqueWords, StandardCharsets.UTF_8);
+
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage());
             }
-
-            FileUtils.writeStringToFile(new File(outputFile), "Unique words in the text: " + uniqueWords, StandardCharsets.UTF_8);
-
-        } catch (IOException e) {
-            LOGGER.warn(e.getMessage());
+            LOGGER.info("uniqueWordsPrinter(...)");
+        } else {
+            LOGGER.warn("One of the Strings is null");
         }
-        LOGGER.info("uniqueWordsPrinter(...)");
     }
 
     @Override
