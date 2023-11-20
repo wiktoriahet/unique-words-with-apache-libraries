@@ -3,7 +3,7 @@ package pl.hetman.wiktoria.solvd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class TextTest {
 
@@ -22,8 +22,8 @@ class TextTest {
 
         //then
         Assertions.assertAll(
-                ()->assertFalse(OUTPUT_COUNT_FILE.isEmpty(), "File is empty"),
-                ()->assertFalse(OUTPUT_EMPTY_FILE.isEmpty(), "File is not empty")
+                () -> assertFalse(OUTPUT_COUNT_FILE.isEmpty(), "File is empty"),
+                () -> assertFalse(OUTPUT_EMPTY_FILE.isEmpty(), "File is not empty")
         );
 
     }
