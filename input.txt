@@ -1,0 +1,6 @@
+Before debugging
+Make sure the Generate debugging info option is turned on (the default setting) in Settings | Build, Execution, Deployment | Compiler | Java Compiler.
+This setting is not absolutely required for debugging, however, we recommend leaving it enabled. Disabling it allows you to save disk space at the cost of some debugger functionality.
+Configure common debugging properties and behavior in Settings | Build, Execution, Deployment | Debugger.
+If you are new to debugging, the out-of-the-box configuration will work for you. The topics about each debugger functionality provide references and explain the related settings where applicable. If you are an advanced user and looking for some particular property, see the Debugger reference section.
+Define a run/debug configuration if you are going to use a custom one. This is required if you need some arguments to be passed to the program or some special activity to be performed before launch. For more information about setting up run/debug configurations, refer to the Run/debug configurations section. Most of the time, you don't need this to debug a simple program that doesn't expect arguments or have any special requirements.
